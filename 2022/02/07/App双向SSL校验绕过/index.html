@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <head><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="App双向SSL校验绕过"/><link rel="alternate" href="/atom.xml" title="Saltneko"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0" />
+<link rel="canonical" href="http://yoursite.com/2022/02/07/App双向SSL校验绕过/"/>
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0" />
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":"app_id:sB2SP6AaImiT4x3A8ms2stxj-gzGzoHsz app_key:69kbIXu3HeNAasY9m6mbX6fa","toc":true,"fancybox":true,"pjax":"","latex":false};
+</script>
+
+    <title>App双向SSL校验绕过 - Saltneko</title>
+  <meta name="generator" content="Hexo 4.2.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Saltneko</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">Home
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">Archives
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories
+          </li>
+      </a><a href="/link/">
+        <li class="mobile-menu-item">Link
+          </li>
+      </a></ul>
+</nav>
+<div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Saltneko</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            Home
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            Archives
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            Categories
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/link/">
+            Link
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">App双向SSL校验绕过
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-02-07
+        </span><span class="post-category">
+            <a href="/categories/Android/">Android</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备工作"><span class="toc-text">#准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL单向认证绕过"><span class="toc-text">#SSL单向认证绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用自签名证书"><span class="toc-text">#使用自签名证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL双向认证绕过"><span class="toc-text">#SSL双向认证绕过</span></a></li></ol>
+    </div>
+  </div><div class="post-content"><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="#准备工作"></a>#准备工作</h3><blockquote>
+<p>· 已root的安卓机（小于Android 10）<br>· adb —— 用于调试Android设备<br>· Frida —— 用于对apk内的部分验证代码进行Hook<br>· Burpsuite —— 用于抓包<br>· OpenSSL —— 用于生成证书及转换证书格式</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="SSL单向认证绕过"><a href="#SSL单向认证绕过" class="headerlink" title="#SSL单向认证绕过"></a>#SSL单向认证绕过</h3><p>*配置burp（在个人电脑上操作）</p>
+<p><img src="/images/pasted-289.png" alt="upload successful"></p>
+<p>*手机上配置wifi（在手机上操作）<br>手机上连接与电脑同一网段的wifi</p>
+<p><img src="/images/pasted-291.png" alt="upload successful"></p>
+<p><img src="/images/pasted-292.png" alt="upload successful"></p>
+<p>*导出Burp证书<br><img src="/images/pasted-294.png" alt="upload successful"></p>
+<p><code>Android 7.0+不再默认信任个人安装的证书。因此需要root手机后，将我们的根证书安装到系统内：假装是个系统自带的证书。</code></p>
+<p>*电脑端操作为手机安装证书</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -inform DER -in cacert.der -out cacert.pem   #导出的der证书转换为pem格式</span><br><span class="line">openssl x509 -inform PEM -subject_hash_old -in cacert.pem|head -1  #打印hash，得到9a5ba575</span><br><span class="line">cp burp.pem 9a5ba575.0 </span><br><span class="line">adb push 9a5ba575.0 &#x2F;system&#x2F;etc&#x2F;security&#x2F;cacerts&#x2F;#将证书传到系统根证书目录</span><br><span class="line">adb shell chmod 644 &#x2F;system&#x2F;etc&#x2F;security&#x2F;cacerts&#x2F;9a5ba575.0 </span><br><span class="line">abd reboot</span><br></pre></td></tr></table></figure>
+<h3 id="使用自签名证书"><a href="#使用自签名证书" class="headerlink" title="#使用自签名证书"></a>#使用自签名证书</h3><p><code>某些情况下，Burpsuite导出的证书无法满足我们需求；或是出现无法抓包的玄学问题：考虑生成一个自签名证书导入Burpsuite。</code><br>*生成自签名根证书</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir certificates &amp;&amp; cd certificates </span><br><span class="line">cp &quot;C:\Program Files\OpenSSL-Win64\bin\cnf\openssl.cnf&quot; </span><br><span class="line">openssl req -x509 -days 730 -nodes -newkey rsa:2048 -outform der -keyout server.key -out ca.der -extensions v3_ca -config openssl.cnf   #创建一个新的根证书</span><br><span class="line">openssl rsa -in server.key -inform pem -out server.key.der -outform der   #转为der格式</span><br><span class="line">openssl pkcs8 -topk8 -in server.key.der -inform der -out server.key.pkcs8.der -outform der –nocrypt   #将key转换为pkcs8格式</span><br></pre></td></tr></table></figure>
+<p>*把自签名证书导入burp</p>
+<p><img src="/images/pasted-312.png" alt="upload successful"></p>
+<p><img src="/images/pasted-313.png" alt="upload successful"></p>
+<p><img src="/images/pasted-314.png" alt="upload successful"></p>
+<p><code>在Burp内导入自签名证书后，挂上Burp的代理访问，Burp会自动使用我们刚才生成的根证书签发当前域名的证书。证书的签发者信息就是我们刚才在openssl req内所填写的。接着，我们需要让手机信任我们刚才签发的CA。</code></p>
+<p><img src="/images/pasted-316.png" alt="upload successful"></p>
+<p>*直接在手机上安装我们刚才生成的CA证书<br>*再使用adb将其转移到系统证书存储区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">adb shell </span><br><span class="line">su</span><br><span class="line">cd &#x2F;data&#x2F;misc&#x2F;user&#x2F;0&#x2F;cacerts-added&#x2F;   #进入证书安装路径</span><br><span class="line">ls   #显示安装的证书</span><br><span class="line">mount -o rw,remount &#x2F;system   #重新挂载 &#x2F;</span><br><span class="line">chmod 777 &#x2F;system    #给予权限</span><br><span class="line">mv d58e1f78.0  &#x2F;system&#x2F;etc&#x2F;security&#x2F;cacerts&#x2F;    #将证书复制到根目录</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<h3 id="SSL双向认证绕过"><a href="#SSL双向认证绕过" class="headerlink" title="#SSL双向认证绕过"></a>#SSL双向认证绕过</h3><blockquote>
+<p>某些敏感接口的服务端会验证客户端是否合法。<br>需要在Burpsuite内导入客户端证书。<br>HTTPS双向认证流程：</p>
+<blockquote>
+<p>C-&gt;S：发送相关连接信息<br>S-&gt;C：返回包含服务器公钥的证书<br>C-&gt;S：使用服务器公钥加密自己支持的加密方案，并将包含客户端公钥的证书一并发给服务器<br>S-&gt;C：使用客户端公钥加密自己支持的加密方案，并用双方的加密方案生成随机数R，加密后返回客户端<br>C-&gt;S：双方开始使用这个R来通信</p>
+</blockquote>
+</blockquote>
+<p>*导出apk</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">adb shell</span><br><span class="line">su</span><br><span class="line">pm list package|grep kfc   #查看包名 返回com.yek.android.kfc.activitys</span><br><span class="line">pm path com.yek.android.kfc.activitys   #查看路径名 返回&#x2F;data&#x2F;app&#x2F;com.yek.android.kfc.activitys-JBrepCya_JjEEtgE2-JUxA&#x3D;&#x3D;&#x2F;base.apk</span><br><span class="line">exit</span><br><span class="line">exit</span><br><span class="line">adb pull data&#x2F;app&#x2F;com.yek.android.kfc.activitys-JBrepCya_JjEEtgE2-JUxA&#x3D;&#x3D;&#x2F;base.apk  C:\Users\xxx\Desktop   #导出apk</span><br></pre></td></tr></table></figure>
+<p>*修改.apk后缀为.zip并解压<br>*从assets等资源目录找到后缀名为p12/pfx/pem等的证书文件<br>*如果是p12类型，可将其直接导入Burpsuite。（可能需要密码 通用123456）</p>
+<p><img src="/images/pasted-323.png" alt="upload successful"></p>
+<p><img src="/images/pasted-324.png" alt="upload successful"></p>
+<p>*获取安装证书的密码<br>将apk拖入 jeb 搜索证书文件（本例为client.p12），或是PKCS12等关键字符。</p>
+<p><img src="/images/pasted-327.png" alt="upload successful"></p>
+<blockquote>
+<p>· 某些客户端也会验证服务器证书是否是指定的证书。<br>· 除逆向直接删除这部分逻辑外，更简便的方法是，使用Frida对客户端进行Hook，让客户端的所有验证都能通过。<br>· 使用Frida的优势在于不用逆向，基本上针对大部分此类App都是可用的。</p>
+</blockquote>
+<p>*安装Frida</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">电脑端安装</span><br><span class="line">*python版本3.7*</span><br><span class="line">pip3 install frida</span><br><span class="line">pip3 install frida-tools</span><br><span class="line">手机端安装</span><br><span class="line">adb shell </span><br><span class="line">su </span><br><span class="line">getprop ro.product.cpu.abi   #查看Android手机设备设置 返回arm64-v8a</span><br><span class="line">frida -version   #在电脑端查看安装的frida版本 返回14.2.18</span><br></pre></td></tr></table></figure>
+<p>*下载对应frida-server并安装，注意版本号对应：<br><a href="https://github.com/frida/frida/releases" target="_blank" rel="noopener">https://github.com/frida/frida/releases</a></p>
+<p><img src="/images/pasted-331.png" alt="upload successful"></p>
+<p>*下载后进行解压，解压后的文件重命名为frida-server并复制到手机 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">adb push firda-server &#x2F;data&#x2F;local&#x2F;tmp #将frida-server放到手机的这个目录下</span><br><span class="line">adb forward tcp:27042 tcp:27042  #转发端口</span><br><span class="line">adb forward tcp:27043 tcp:27043</span><br><span class="line">adb shell </span><br><span class="line">su</span><br><span class="line">cd &#x2F;data&#x2F;local&#x2F;tmp</span><br><span class="line">chmod 755 frida-server  #赋予可执行权限</span><br><span class="line">.&#x2F;frida-server  #后台运行frida-server</span><br></pre></td></tr></table></figure>
+<p>*另起一个cmd窗口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frida-ps -U</span><br></pre></td></tr></table></figure>
+<p><img src="/images/pasted-335.png" alt="upload successful"></p>
+<p>*使用Frida加载脚本，绕过服务端证书校验<br>*先保存为.txt格式 另存为.js 并选择编码UTF-8</p>
+<p><img src="/images/pasted-337.png" alt="upload successful"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">function AndroidMain()&#123;</span><br><span class="line">    var X509TrustManager &#x3D; Java.use(&#39;javax.net.ssl.X509TrustManager&#39;);</span><br><span class="line">    var TrustManager;</span><br><span class="line">	try &#123;</span><br><span class="line">	    </span><br><span class="line">		TrustManager &#x3D; Java.registerClass(&#123;</span><br><span class="line">			name: &#39;org.wooyun.TrustManager&#39;,</span><br><span class="line">			implements: [X509TrustManager],</span><br><span class="line">			methods: &#123;</span><br><span class="line">				checkClientTrusted: function(chain, authType) &#123;&#125;,</span><br><span class="line">				checkServerTrusted: function(chain, authType) &#123;&#125;,</span><br><span class="line">				getAcceptedIssuers: function() &#123;</span><br><span class="line">					return [];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		</span><br><span class="line">		var TrustManagers &#x3D; [TrustManager.$new()];</span><br><span class="line">		</span><br><span class="line">		var SSLContext &#x3D; Java.use(&#39;javax.net.ssl.SSLContext&#39;);</span><br><span class="line">		</span><br><span class="line">		SSLContext.init.overload(&#39;[Ljavax.net.ssl.KeyManager;&#39;, &#39;[Ljavax.net.ssl.TrustManager;&#39;, &#39;java.security.SecureRandom&#39;).implementation &#x3D; function() &#123;</span><br><span class="line">		    console.log(&quot;执行替换&quot;)</span><br><span class="line">		    this.init.overload(&#39;[Ljavax.net.ssl.KeyManager;&#39;, &#39;[Ljavax.net.ssl.TrustManager;&#39;, &#39;java.security.SecureRandom&#39;).call(this, null, TrustManagers, null);</span><br><span class="line">		</span><br><span class="line">        &#125;</span><br><span class="line">		</span><br><span class="line">	&#125; catch (e) &#123;</span><br><span class="line">		console.log(&quot;error:  &quot; + e.message);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">setImmediate(function() &#123;</span><br><span class="line">	send(&quot;script running...&quot; + &quot;-cusoto0oom0sc0ri0pt-&quot;);</span><br><span class="line">	&#x2F;&#x2F;打印堆栈</span><br><span class="line">    if (ObjC.available) &#123;</span><br><span class="line">		&#x2F;&#x2F;</span><br><span class="line">    &#125;else if(Java.available) &#123;</span><br><span class="line">		Java.perform(function() &#123;</span><br><span class="line">       		AndroidMain();</span><br><span class="line">   		&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/pasted-338.png" alt="upload successful"></p>
+<p><img src="/images/pasted-339.png" alt="upload successful"></p>
+
+      </div>
+      
+      <footer class="post-footer">
+        
+        <nav class="post-nav"><a class="next" href="/2021/04/26/CTFHUB-SSRF/">
+        <span class="next-text nav-default">CTF笔记</span>
+        <span class="prev-text nav-mobile">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div>
+  <div class="comments" id="comments">
+    
+  </div>
+</div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:1281714262@qq.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/SaLTNEko" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even" target="_blank" rel="noopener">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2015 - 2022<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Salt</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>
