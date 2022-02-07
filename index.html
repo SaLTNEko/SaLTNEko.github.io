@@ -98,6 +98,27 @@
         <div class="content-wrapper">
           <div id="content" class="content"><section id="posts" class="posts"><article class="post">
     <header class="post-header">
+      <h1 class="post-title"><a class="post-link" href="/2022/02/07/%E9%80%9A%E8%BF%87Frida%E7%BB%95%E8%BF%87%E9%93%B6%E8%A1%8Capp%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0%E6%98%8E%E6%96%87%E4%BC%A0%E8%BE%93/">通过Frida绕过银行app加密实现明文传输</a>
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2022-02-07
+        </span><span class="post-category">
+            <a href="/categories/Android/">Android</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-content"><blockquote>
+<p>· 已root的安卓机（小于Android 10）<br>· adb —— 用于调试Android设备<br>· Frida —— 用于对apk内的部分验证代码进行Hook<br>· Burpsuite —— 用于抓包<br>· OpenSSL —— 用于生成证书及转换证书格式<br>· HTTPDecrypt  —— 用于利用HTTP协议 远程加解密数据包<br>· Magisk —— 绕过银行app对root的检测</p>
+</blockquote>
+          <div class="read-more">
+            <a href="/2022/02/07/%E9%80%9A%E8%BF%87Frida%E7%BB%95%E8%BF%87%E9%93%B6%E8%A1%8Capp%E5%8A%A0%E5%AF%86%E5%AE%9E%E7%8E%B0%E6%98%8E%E6%96%87%E4%BC%A0%E8%BE%93/" class="read-more-link">Read more..</a>
+          </div>
+        </div></article>
+      <article class="post">
+    <header class="post-header">
       <h1 class="post-title"><a class="post-link" href="/2022/02/07/App%E5%8F%8C%E5%90%91SSL%E6%A0%A1%E9%AA%8C%E7%BB%95%E8%BF%87/">App双向SSL校验绕过</a>
         </h1>
 
@@ -280,25 +301,6 @@
     <div class="post-content"><h3 id="常见的搜集"><a href="#常见的搜集" class="headerlink" title="#常见的搜集"></a>#常见的搜集</h3><p>1.查看泄漏目录<code>python3 dirsearch.py -u http://challenge-ff56d3fec964fb86.sandbox.ctfhub.com:10080/</code><br><img src="/images/pasted-237.png" alt="upload successful"></p>
           <div class="read-more">
             <a href="/2021/01/30/Github-wp/" class="read-more-link">Read more..</a>
-          </div>
-        </div></article>
-      <article class="post">
-    <header class="post-header">
-      <h1 class="post-title"><a class="post-link" href="/2020/02/04/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
-        </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2020-02-04
-        </span><span class="post-category">
-            <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/">渗透测试</a>
-            </span>
-        </div>
-    </header>
-
-    <div class="post-content"><h3 id="判断存在注入"><a href="#判断存在注入" class="headerlink" title="#判断存在注入"></a>#判断存在注入</h3><p>1.访问<code>id=1</code><br>2.访问<code>id=1</code>‘，返回内容与1不同<br>3.访问<code>id=1 and 1=1</code>，返回内容与1相同<br>4.访问<code>id=1 and 1=2</code>，返回内容与1不同<br>=》判断存在注入</p>
-          <div class="read-more">
-            <a href="/2020/02/04/SQL%E6%B3%A8%E5%85%A5/" class="read-more-link">Read more..</a>
           </div>
         </div></article>
       <nav class="pagination"><a class="next" href="/page/2/">
